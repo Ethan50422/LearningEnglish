@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethan 英文學習網</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- 底下加入Bootstrap4的CSS功能 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="LearnEnglish">
+        <h1>英文學習網</h1>
+        <div class="container pt-2">
+            <div class="row mt-3">
+                <div class="col-4 p-3">
+                    <form>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" for="EnglishVocabulary">英文單字</span>
+                            </div>
+                            <input @keyup.enter="addEnglishList" v-model="vocalbulary" type="text" class="form-control"
+                                id="EnglishVocabulary" placeholder="請輸入英文單字" aria-describedby="emailHelp">
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" for="EnglishStatuS">單字詞性</span>
+                            </div>
+                            <input @keyup.enter="addEnglishList" v-model="partofspeech" type="text" class="form-control"
+                                id="EnglishStatus" placeholder="請輸入單字詞性" aria-describedby="emailHelp">
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="form-group-prepend">
+                                <span class="input-group-text" for="EnglishMeaning">中文意思</span>
+                            </div>
+                            <input @keyup.enter="addEnglishList" v-model="meaning" type="text" class="form-control"
+                                id="EnglishMeaning" placeholder="請輸入中文意思" aria-describedby="emailHelp">
+                        </div>
+                        <button @click="addEnglishList" type="button" class="btn btn-info">新增單字</button>
+                        
+                    </form>
+                </div>
+                <div class="col-8 p-3 border border-info rounded">
+                    <table class="table table-hover table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="text-center" scope="col">#</th>
+                                <th class="text-center" scope="col">英文單字</th>
+                                <th class="text-center" scope="col">單字詞性</th>
+                                <th class="text-center" scope="col">中文意思</th>
+                                <th class="text-center" scope="col">刪除</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, key) in EnglishList" :key=key>
+                                <th class="text-center" scope="row">{{key+1}}</th>
+                                <td class="text-center">{{item.vocalbulary}}</td>
+                                <td class="text-center">{{item.partofspeech}}.</td>
+                                <td class="text-center">{{item.meaning}}</td>
+                                <td class="text-center">
+                                    <button @click="clearEnglishword(item, key)" type="button"
+                                        class="btn btn-danger btn-sm" aria-label="Close">
+                                        <span class="text-light" aria-hidden="true">&times;</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- 引進axios套件 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- 底下加入jQuery檔案 -->
+<script src="./js/jquery-3.5.1.min.js"></script>
+<!-- 引進Vue功能 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 引進自己的js -->
+<script src="./js/all.js"></script>
+
+</html>
