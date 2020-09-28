@@ -40,7 +40,7 @@
                                 id="EnglishMeaning" placeholder="請輸入中文意思" aria-describedby="emailHelp">
                         </div>
                         <button @click="addEnglishList" type="button" class="btn btn-info">新增單字</button>
-                        
+                        <button @click="updateEnglishList" type="button" class="btn btn-info">儲存列表設定</button>
                     </form>
                 </div>
                 <div class="col-8 p-3 border border-info rounded">
@@ -51,15 +51,26 @@
                                 <th class="text-center" scope="col">英文單字</th>
                                 <th class="text-center" scope="col">單字詞性</th>
                                 <th class="text-center" scope="col">中文意思</th>
+                                <th class="text-center" scope="col">加入最愛</th>
+                                <th class="text-center" scope="col">重要性</th>
                                 <th class="text-center" scope="col">刪除</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, key) in EnglishList" :key=key>
+                            <tr :class="{bgchangepink: item.important === '1', bgchangeyellow: item.important === '2', bgchangegreen: item.important === '3'}" v-for="(item, key) in EnglishList" :key=key>
                                 <th class="text-center" scope="row">{{key+1}}</th>
                                 <td class="text-center">{{item.vocalbulary}}</td>
                                 <td class="text-center">{{item.partofspeech}}.</td>
                                 <td class="text-center">{{item.meaning}}</td>
+                                <td class="text-center" :class="{favorite: item.isfavorites }" @click="item.isfavorites = !item.isfavorites">最愛</td>
+                                <td class="text-center">
+                                    <select v-model="item.important" value="">
+                                        <option value="0">---</option>
+                                        <option value="1" name="">1</option>
+                                        <option value="2" name="">2</option>
+                                        <option value="3" name="">3</option>
+                                    </select>
+                                </td>
                                 <td class="text-center">
                                     <button @click="clearEnglishword(item, key)" type="button"
                                         class="btn btn-danger btn-sm" aria-label="Close">

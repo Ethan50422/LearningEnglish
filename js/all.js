@@ -5,7 +5,8 @@ var app = new Vue({
         vocalbulary: '',
         partofspeech: '',
         meaning: '',
-        EnglishList: []
+        EnglishList: [],
+        isfavorites: false
     },
     created() {
         const getEnglishList = JSON.parse(localStorage.getItem('EnglishList'))
@@ -20,7 +21,9 @@ var app = new Vue({
                     vocalbulary: vm.vocalbulary,
                     partofspeech: vm.partofspeech,
                     meaning: vm.meaning,
-                    id: timestamp
+                    id: timestamp,
+                    isfavorites: false,
+                    important: ''
                 })
                 vm.vocalbulary = ''
                 vm.partofspeech = ''
@@ -36,6 +39,19 @@ var app = new Vue({
                     localStorage.setItem('EnglishList', JSON.stringify(vm.EnglishList))
                 }
             })
+        },
+        updateEnglishList(){
+            const vm = this
+            localStorage.setItem('EnglishList', JSON.stringify(vm.EnglishList))
+        },
+        filterEnglishList(){
+            const vm = this
+            vm.EnglishList.forEach(function(item, key){
+                if( item.isfavorites === true ){
+                    console.log('321')
+                } 
+            })
         }
+        
     }
 })

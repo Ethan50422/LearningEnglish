@@ -2,3 +2,15 @@ h1{
     text-align: center;
     color: pink;
 }
+.favorite{
+    color: red;
+}
+.bgchangepink{
+    background-color: pink;
+}
+.bgchangeyellow{
+    background-color: lightskyblue;
+}
+.bgchangegreen{
+    background-color: lightgreen;
+}
