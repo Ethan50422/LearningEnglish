@@ -6,7 +6,9 @@ var app = new Vue({
         partofspeech: '',
         meaning: '',
         EnglishList: [],
-        isfavorites: false
+        isfavorites: false,
+        filterEnglishList: [],
+        currentPage: '',
     },
     created() {
         const getEnglishList = JSON.parse(localStorage.getItem('EnglishList'))
@@ -44,13 +46,34 @@ var app = new Vue({
             const vm = this
             localStorage.setItem('EnglishList', JSON.stringify(vm.EnglishList))
         },
-        filterEnglishList(){
+        // 篩選出有加入最愛的單字
+        filterEnglishListIsfavorites(){
             const vm = this
-            vm.EnglishList.forEach(function(item, key){
-                if( item.isfavorites === true ){
-                    console.log('321')
-                } 
+            tempList = vm.EnglishList.filter(function (item) {
+                return item.isfavorites
             })
+            vm.filterEnglishList = tempList;
+        },
+        filterEnglishListImportance1 () {
+            const vm = this
+            tempList = vm.EnglishList.filter(function (item) {
+                return item.important === '1'
+            })
+            vm.filterEnglishList = tempList;
+        },
+        filterEnglishListImportance2 () {
+            const vm = this
+            tempList = vm.EnglishList.filter(function (item) {
+                return item.important === '2'
+            })
+            vm.filterEnglishList = tempList;
+        },
+        filterEnglishListImportance3 () {
+            const vm = this
+            tempList = vm.EnglishList.filter(function (item) {
+                return item.important === '3'
+            })
+            vm.filterEnglishList = tempList;
         }
         
     }
